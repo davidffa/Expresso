@@ -1,0 +1,27 @@
+body {
+  font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.add-btn {
+  background-color: #006250;
+  color: #FFFFFF;
+}
+
+.add-btn:hover {
+  background-color: #014438;
+  color: #FFFFFF;
+  transition: 0.4s;
+}
+
+.out-of-stock {
+  opacity: 0.5;
+}
+
+.out-of-stock .add-btn {
+  cursor: not-allowed;
+}
+
+.out-of-stock .add-btn:hover {
+  background-color: #006250;
+  color: #FFFFFF;
+}
