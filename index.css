@@ -5,3 +5,14 @@ body {
   background-size: cover;
   height: 100vh;
 }
+
+/* For a tag in Index page -> turn into courier */
+a.nostyle:link {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+a.nostyle:visited {
+  text-decoration: inherit;
+  color: inherit;
+}
