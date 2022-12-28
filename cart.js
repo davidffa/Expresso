@@ -58,7 +58,7 @@ var vm = function () {
     return self.items().reduce((acc, curr) => acc += self.products[curr.id].price * curr.qty, 0).toFixed(2);
   }
   self.calcServiceTax = () => {
-    return Math.min(2.5, Math.log(self.subTotal() - 0.5)).toFixed(2);
+    return Math.min(2.5, Math.log(Number(self.subTotal()) + 1)).toFixed(2);
   }
   self.total = ko.computed(() => {
     return (Number(self.subTotal()) + Number(self.calcServiceTax())).toFixed(2);
