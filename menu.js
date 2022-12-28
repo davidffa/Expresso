@@ -47,7 +47,15 @@ var vm = function () {
     const pid = self.products.findIndex(p => p.name === product.name);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    if (cart.find(it => it.id === pid)) return;
+    if (cart.find(it => it.id === pid)) {
+      Swal.fire(
+        'Produto já escolhido!',
+        `${product.name} já está no carrinho!`,
+        'error'
+      );
+
+      return;
+    }
 
     cart.push({
       id: pid,
