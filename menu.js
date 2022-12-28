@@ -54,6 +54,12 @@ var vm = function () {
       qty: 1
     });
 
+    Swal.fire(
+      'Adicionado ao pedido!',
+      `${product.name} foi adicionado ao seu pedido`,
+      'success'
+    )
+
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
@@ -68,14 +74,6 @@ var vm = function () {
 
 $(document).ready(() => {
   ko.applyBindings(new vm());
-  // const isLogged = localStorage.getItem('profile');
-
-  // if (!isLogged) {
-  //   window.location.href = "./signin.html";
-  // }
-});
-
-$(document).ready(() => {
   // const isLogged = localStorage.getItem('profile');
 
   // if (!isLogged) {
