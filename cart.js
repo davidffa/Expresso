@@ -49,6 +49,7 @@ var vm = function () {
   }
   self.removeItem = (item) => {
     self.items.splice(self.items.indexOf(item), 1);
+    localStorage.setItem('cart', JSON.stringify(self.items()));
   }
   self.clearCart = () => {
     self.items([]);
