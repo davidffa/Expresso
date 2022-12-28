@@ -98,7 +98,8 @@
             <p class="text-end text-danger">Esgotado.</p>
             <!-- /ko -->
             <h5 class="text-end" data-bind="text: price.toFixed(2) + ' €'">1,99€</h5>
-            <button class="btn add-btn w-100" data-bind="css: { disabled: !stock }">Adicionar ao pedido</button>
+            <button class="btn add-btn w-100" data-bind="css: { disabled: !stock }, click: $parent.addToCart">Adicionar
+              ao pedido</button>
           </div>
         </div>
       </div>
