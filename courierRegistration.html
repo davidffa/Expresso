@@ -176,13 +176,19 @@
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function (form) {
                     form.addEventListener('submit', function (event) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        Swal.fire(
-                            'Candidatura submetida!',
-                            'A sua candidatura foi submetida com sucesso! Iremos contacta-lo o mais breve possível!',
-                            'success'
-                        );
+                        // With incorrect data don't fire success message
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        else {
+                            event.preventDefault();
+                            Swal.fire(
+                                'Candidatura submetida!',
+                                'A sua candidatura foi submetida com sucesso! Iremos contacta-lo o mais breve possível!',
+                                'success'
+                            );
+                        }
                         form.classList.add('was-validated');
                     }, false);
                 });
