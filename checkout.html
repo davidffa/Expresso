@@ -67,11 +67,16 @@
                 <h2>Checkout</h2>
             </div>
             <div class="row m-2 p-2 mt-3">
-                <div class="col-6 deliveryOption pt-2 pb-2 deliveryOptionActive">ENTREGA AO DOMICÍLIO</div>
-                <div class="col-6 deliveryOption pt-2 pb-2">PEDIDO EM LOJA</div>
+                <div id="homeDel" class="col-6 deliveryOption pt-2 pb-2 deliveryOptionActive">ENTREGA AO DOMICÍLIO</div>
+                <div id="inShop" class="col-6 deliveryOption pt-2 pb-2">PEDIDO EM LOJA</div>
             </div>
-            <div class="row d-flex align-bottom border-bottom p-2 m-2 mt-3">
+            <!-- Option 1 homeDelivery -->
+            <div class="row d-flex align-bottom border-bottom p-2 m-2 mt-3 homeDelivery">
                 <h3>Informação de entrega:</h3>
+            </div>
+            <!-- Option 2 Order to Shop -->
+            <div class="row d-flex align-bottom border-bottom p-2 m-2 mt-3 pickUp d-none">
+                <h3>Detalhes da retirada</h3>
             </div>
         </div>
         <div class="col-4">
@@ -96,7 +101,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <!-- Option 1 homeDelivery -->
+        <div class="col-8 homeDelivery">
             <form class="needs-validation" novalidate>
                 <div class="row m-2">
                     <div class="col-9">
@@ -120,12 +126,44 @@
                 </div>
                 <div class="row mt-5 m-2">
                     <div class="col text-end">
-                        <button id="submitBtn" type="submit" class="btn btn-light">Guardar e Continuar</button>
+                        <button type="submit" class="btn btn-light submitBtn">Guardar e Continuar</button>
                     </div>
                 </div>
             </form>
 
         </div>
+        <!-- Option 2 Order to Shop -->
+        <div class="col-8 pickUp d-none">
+            <form class="needs-validation" novalidate>
+                <div class="row m-2">
+                    <div class="col-9">
+                        <label for="shopSelect"></label>
+                        <select id="shopSelect" class="form-select" required>
+                            <option selected disabled="disabled">Escolha a cafeteria da retirada</option>
+                            <option value="Porto">Porto, Portugal</option>
+                            <option value="Aveiro">Aveiro, Portugal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-6">
+                        <label for="pickupDate">Data de retirada</label>
+                        <input id="pickupDate" type="date" class="form-control" placeholder="" required>
+                    </div>
+                    <div class="col-6">
+                        <label for="pickupTime">Horário de coleta</label>
+                        <input id="pickupTime" type="time" class="form-control" placeholder="" required>
+                    </div>
+                </div>
+                <div class="row mt-5 m-2">
+                    <div class="col text-end">
+                        <button type="submit" class="btn btn-light submitBtn">Guardar e Continuar</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- Payment box -->
         <div class="col-4">
             <div id="secondContainer" class="container-bg m-3">
                 <div class="border-bottom border-dark pt-3  m-2 row">
@@ -153,7 +191,7 @@
                     </div>
                 </div>
                 <div class="row m-2 mt-3 mx-3">
-                    <button type="button" class="btn btn-success" style="display: block; width: 100%">FINALIZAR PEDIDO
+                    <button id="finishOrder" type="button" class="btn btn-success" style="display: block; width: 100%">FINALIZAR PEDIDO
                     </button>
                 </div>
             </div>
@@ -165,33 +203,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- jQuery Bundle -->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<!-- jQueryUI Bundle -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="https://knockoutjs.com/downloads/knockout-3.5.1.js"></script>
 <script src="cart.js"></script>
-<script>
-
-
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    Swal.fire(
-                        'Dados atualizados!',
-                        'Os dados da sua conta foram atualizados',
-                        'success'
-                    );
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
+<script src="checkout.js"></script>
 
 </body>
 
