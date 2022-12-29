@@ -39,6 +39,10 @@
     font-size: 22px;
 }
 
-#submitBtn{
+.activePayment{
+    border: black 3px solid;
+}
+
+.submitBtn{
     background-color: #D9D9D9;
 }
