@@ -1,0 +1,14 @@
+body {
+    font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("./assets/backgrounddark.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+#form {
+    background-color: #0000007F;
+    border: solid 1px;
+    border-radius: 10%;
+}
+
