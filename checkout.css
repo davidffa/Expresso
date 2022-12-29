@@ -1,0 +1,44 @@
+.deliveryOption{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    border: lightgray 1px solid;
+    cursor: pointer;
+}
+
+.deliveryOptionActive{
+    border: black 2px solid;
+}
+
+.container-bg{
+    background-color: #D9D9D9;
+    height: 250px;
+    width: auto;
+    border-radius: 20px;
+}
+
+#secondContainer{
+    height: 300px;
+}
+
+.img {
+    object-fit: cover;
+    width: 100vw;
+}
+
+.paymentOption{
+    border: black 1px solid;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.paymentContainer{
+    padding: 2px;
+    display: flex;
+    font-size: 22px;
+}
+
+#submitBtn{
+    background-color: #D9D9D9;
+}
