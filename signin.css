@@ -1,6 +1,6 @@
 body {
     font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("./assets/backgrounddark.png");
+    background-image: url("./assets/background.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -11,4 +11,3 @@ body {
     border: solid 1px;
     border-radius: 10%;
 }
-
