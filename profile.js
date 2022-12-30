@@ -1,8 +1,8 @@
 const vm = function () {
   const self = this;
-  self.name = ko.observable();
+  self.name = ko.observable("John Doe");
   self.photoURL = ko.observable();
-  self.email = ko.observable();
+  self.email = ko.observable("john.doe@gmail.com");
   self.loggedIn = ko.observable(false);
 
   self.activate = () => {

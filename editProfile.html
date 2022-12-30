@@ -81,7 +81,8 @@
         <div class="row m-2 mb-4">
           <div class="col-5">
             <label for="name">Nome:</label>
-            <input id="name" type="text" class="form-control" value="João Silva" required>
+            <input id="name" type="text" class="form-control" value="João Silva" required
+              data-bind="attr: { value: name }">
           </div>
           <div class="col-1"></div>
           <div class="col-5">
@@ -92,7 +93,8 @@
         <div class="row m-2 mb-4">
           <div class="col-5">
             <label for="email">Email:</label>
-            <input id="email" type="text" class="form-control" value="joão.silva@gmail.com" required>
+            <input id="email" type="text" class="form-control" value="joão.silva@gmail.com" required
+              data-bind="attr: { value: email }">
           </div>
           <div class="col-1"></div>
           <div class="col-5 form-group">
