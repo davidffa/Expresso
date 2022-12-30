@@ -2,6 +2,11 @@
 var vm = function () {
   var self = this;
 
+  self.name = ko.observable();
+  self.photoURL = ko.observable();
+  self.email = ko.observable();
+  self.loggedIn = ko.observable(false);
+
   self.products = [
     {
       name: "Croissant Misto",
@@ -74,6 +79,16 @@ var vm = function () {
 
   self.activate = () => {
     loadItems();
+
+    const profileJSON = localStorage.getItem("profile");
+    if (!profileJSON) return;
+
+    const profile = JSON.parse(profileJSON);
+
+    self.name(profile.name);
+    self.photoURL(profile.photoURL);
+    self.email(profile.email);
+    self.loggedIn(true);
   }
 
   self.activate();
