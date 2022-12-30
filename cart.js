@@ -89,6 +89,11 @@ var vm = function () {
     self.photoURL(profile.photoURL);
     self.email(profile.email);
     self.loggedIn(true);
+
+    $("#logoff").click(() => {
+      localStorage.removeItem("profile");
+      window.location.href = "./index.html";
+    })
   }
 
   self.activate();
