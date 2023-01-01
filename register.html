@@ -112,25 +112,29 @@
       // Loop over them and prevent submission
       Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-
-          const user = {
-            name: document.getElementById('floatingName').value,
-            email: document.getElementById('floatingEmail').value,
-            phone: document.getElementById('floatingNum').value
-          }
-
-          localStorage.setItem("profile", JSON.stringify(user));
-
-          window.location.href = "./index.html";
+          event.preventDefault()
+          event.stopPropagation()
 
           form.classList.add('was-validated')
+
+          if (form.checkValidity()) {
+            register();
+          }
         }, false)
       })
     })();
+
+    function register() {
+      const user = {
+        name: document.getElementById('floatingName').value,
+        email: document.getElementById('floatingEmail').value,
+        phone: document.getElementById('floatingNum').value
+      }
+
+      localStorage.setItem("profile", JSON.stringify(user));
+
+      window.location.href = "./index.html";
+    }
   </script>
 </body>
 

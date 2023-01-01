@@ -88,7 +88,7 @@
           <div class="col-1"></div>
           <div class="col-5">
             <label for="telephone">Número de telemóvel:</label>
-            <input id="telephone" type="tel" class="form-control" value="+351 963 920 500" required>
+            <input id="telephone" data-bind="attr: { value: phone }" type="tel" class="form-control" required>
           </div>
         </div>
         <div class="row m-2 mb-4">
@@ -99,10 +99,9 @@
           </div>
           <div class="col-1"></div>
           <div class="col-5 form-group">
-            <label for="morada">Morada:</label>
-            <textarea id="morada" class="form-control" style="height: 90px; resize: none">Rua Mário Sacramento
-Nº 14
-3810-164 - Aveiro</textarea>
+            <label for="address">Morada:</label>
+            <textarea id="address" data-bind="text: address" class="form-control"
+              style="height: 90px; resize: none"></textarea>
           </div>
         </div>
         <div class="row m-2 mb-4">
@@ -148,6 +147,16 @@ Nº 14
           form.addEventListener('submit', function (event) {
             event.preventDefault();
             event.stopPropagation();
+
+            const data = JSON.parse(localStorage.getItem('profile'));
+
+            data.name = $("#name").val();
+            data.phone = $("#telephone").val();
+            data.email = $("#email").val();
+            data.address = $("#address").val();
+
+            localStorage.setItem('profile', JSON.stringify(data));
+
             Swal.fire(
               'Dados atualizados!',
               'Os dados da sua conta foram atualizados',

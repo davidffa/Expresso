@@ -3,6 +3,8 @@ const vm = function () {
   self.name = ko.observable("John Doe");
   self.photoURL = ko.observable();
   self.email = ko.observable("john.doe@gmail.com");
+  self.phone = ko.observable("");
+  self.address = ko.observable("");
   self.loggedIn = ko.observable(false);
 
   self.activate = () => {
@@ -11,9 +13,11 @@ const vm = function () {
 
     const profile = JSON.parse(profileJSON);
 
-    self.name(profile.name);
-    self.photoURL(profile.photoURL);
+    self.name(profile.name || "Unknown User");
+    self.photoURL(profile.photoURL || "./assets/unknown-user.svg");
     self.email(profile.email);
+    self.phone(profile.phone || "");
+    self.address(profile.address || "");
     self.loggedIn(true);
   }
 

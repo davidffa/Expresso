@@ -13,9 +13,17 @@
                     event.stopPropagation();
                 } else {
                     event.preventDefault();
+
+                    if ($("#address").val() !== "") {
+                        const data = JSON.parse(localStorage.getItem('profile'));
+                        if (data === null) return;
+                        data.address = $("#address").val();
+                        localStorage.setItem('profile', JSON.stringify(data));
+                    }
+
                     Swal.fire(
                         'Dados atualizados!',
-                        'Os dados da sua conta foram atualizados',
+                        'Informações de entrega atualizadas!',
                         'success'
                     );
                 }
@@ -27,7 +35,7 @@
 $('.deliveryOption').click(function () {
     if (!$(this).hasClass('deliveryOptionActive')) {
         $(this).addClass('deliveryOptionActive');
-        if (this.id === "homeDel"){
+        if (this.id === "homeDel") {
             $('#inShop').removeClass('deliveryOptionActive');
             $('.homeDelivery').removeClass('d-none');
             // form area
@@ -41,7 +49,7 @@ $('.deliveryOption').click(function () {
     }
 })
 
-$('.paymentContainer').click(function (){
+$('.paymentContainer').click(function () {
     let paymentContainers = document.getElementsByClassName('paymentContainer');
     for (const method of paymentContainers) {
         $(method).hasClass('activePayment') && $(method).removeClass('activePayment');

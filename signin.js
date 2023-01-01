@@ -17,12 +17,11 @@ getAnalytics(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
-
-$("#signIn").click(() => {
-  signIn();
+$("#googleSignIn").click(() => {
+  googleSignIn();
 });
 
-function signIn() {
+function googleSignIn() {
   signInWithPopup(auth, provider)
     .then(({ user }) => {
       const usr = {
@@ -38,6 +37,12 @@ function signIn() {
     });
 }
 
+function signIn() {
+  const email = $("#floatingEmail").val();
+
+  localStorage.setItem("profile", JSON.stringify({ email }));
+}
+
 (() => {
   'use strict'
 
@@ -47,12 +52,15 @@ function signIn() {
   // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+      event.preventDefault()
+      event.stopPropagation()
 
       form.classList.add('was-validated')
+
+      if (form.checkValidity()) {
+        signIn();
+        window.location.href = "index.html";
+      }
     }, false)
   })
 })();
