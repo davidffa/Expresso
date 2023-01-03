@@ -85,7 +85,7 @@ var vm = function () {
 
     const profile = JSON.parse(profileJSON);
 
-    self.name(profile.name || "Unknown User");
+    self.name(profile.name || "João");
     self.photoURL(profile.photoURL || "./assets/unknown-user.svg");
     self.email(profile.email);
     self.loggedIn(true);
