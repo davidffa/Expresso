@@ -122,7 +122,8 @@
           </div>
           <div class="col-1"></div>
           <div class="col-5">
-            <button type="button" class="btn btn-danger" style="display: block; width: 100%">Eliminar conta
+            <button type="button" class="btn btn-danger" id="deleteAcc" style="display: block; width: 100%">Eliminar
+              conta
             </button>
           </div>
         </div>
@@ -143,6 +144,33 @@
         alert("Não tem sessão iniciada!")
         window.location.href = "./signin.html";
       }
+    });
+
+    $("#deleteAcc").click(() => {
+      Swal.fire({
+        title: 'Tem a certeza?',
+        text: "Não é possível reverter esta ação!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, apagar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const users = JSON.parse(localStorage.getItem('users'));
+          users.splice(users.findIndex(user => user.email === JSON.parse(localStorage.getItem('profile')).email), 1);
+          localStorage.setItem('users', JSON.stringify(users));
+          localStorage.removeItem('profile');
+
+          Swal.fire(
+            'Apagada!',
+            'A sua conta foi apagada.',
+            'success'
+          ).then(() => {
+            window.location.href = "./index.html";
+          })
+        }
+      })
     });
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
