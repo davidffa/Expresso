@@ -54,7 +54,7 @@ function signIn() {
 
   const user = users.find(u => u.email === email);
 
-  if (user.google) {
+  if (user && user.google) {
     Swal.fire(
       'Erro!',
       'Utilizador registado com Google!',
