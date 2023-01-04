@@ -144,6 +144,17 @@
         return;
       }
 
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some(user => user.email === $('#floatingEmail').val())) {
+        Swal.fire(
+          'Erro!',
+          'Já existe uma conta com esse email!',
+          'error'
+        );
+        return;
+      }
+
       const user = {
         name: $('#floatingName').val(),
         email: $('#floatingEmail').val(),
@@ -152,7 +163,7 @@
 
       localStorage.setItem("profile", JSON.stringify(user));
 
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+
       users.push({ ...user, password: $('#floatingPassword').val() });
       localStorage.setItem("users", JSON.stringify(users));
 
