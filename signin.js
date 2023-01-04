@@ -28,6 +28,16 @@ function googleSignIn() {
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
+      };
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      if (!users.some(u => u.email === usr.email)) {
+        users.push({ ...usr, google: true });
+        localStorage.setItem("users", JSON.stringify(users));
+      } else {
+        const userProfile = users.find(u => u.email === usr.email);
+        usr.address = userProfile.address || "";
+        usr.phone = userProfile.phone || "";
       }
 
       localStorage.setItem("profile", JSON.stringify(usr));
@@ -43,6 +53,15 @@ function signIn() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const user = users.find(u => u.email === email);
+
+  if (user.google) {
+    Swal.fire(
+      'Erro!',
+      'Utilizador registado com Google!',
+      'error'
+    )
+    return;
+  }
 
   if (!user || user.password !== password) {
     Swal.fire(
