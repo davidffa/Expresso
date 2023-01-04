@@ -49,6 +49,17 @@ var vm = function () {
   self.shownProducts = ko.observableArray(self.products);
 
   self.addToCart = (product) => {
+    const isLogged = localStorage.getItem('profile');
+
+    if (!isLogged) {
+      Swal.fire(
+        'Erro!',
+        `Não tem sessão iniciada!`,
+        'error'
+      );
+      return;
+    }
+
     const pid = self.products.findIndex(p => p.name === product.name);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -86,7 +97,7 @@ var vm = function () {
 
     const profile = JSON.parse(profileJSON);
 
-    self.name(profile.name || "João");
+    self.name(profile.name);
     self.photoURL(profile.photoURL || "./assets/unknown-user.svg");
     self.email(profile.email);
     self.loggedIn(true);
@@ -102,9 +113,4 @@ var vm = function () {
 
 $(document).ready(() => {
   ko.applyBindings(new vm());
-  // const isLogged = localStorage.getItem('profile');
-
-  // if (!isLogged) {
-  //   window.location.href = "./signin.html";
-  // }
 });

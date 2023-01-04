@@ -136,6 +136,14 @@
   <script src="https://knockoutjs.com/downloads/knockout-3.5.1.js"></script>
   <script src="./profile.js"></script>
   <script>
+    $(document).ready(() => {
+      const isLogged = localStorage.getItem('profile');
+
+      if (!isLogged) {
+        alert("Não tem sessão iniciada!")
+        window.location.href = "./signin.html";
+      }
+    });
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
       'use strict';
@@ -148,13 +156,36 @@
             event.preventDefault();
             event.stopPropagation();
 
+            if ($("#first-pw").val() !== $("#second-pw").val()) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'As palavras-passe não coincidem!',
+              });
+              return;
+            }
+
             const data = JSON.parse(localStorage.getItem('profile'));
+            const users = JSON.parse(localStorage.getItem("users"));
+            const user = users.find(user => user.email === data.email);
 
             data.name = $("#name").val();
             data.phone = $("#telephone").val();
             data.email = $("#email").val();
             data.address = $("#address").val();
 
+            user.name = data.name;
+            user.phone = data.phone;
+            user.email = data.email;
+            user.address = data.address;
+
+            const pwd = $("#first-pw").val();
+
+            if (pwd.length > 0) {
+              user.password = pwd;
+            }
+
+            localStorage.setItem("users", JSON.stringify(users));
             localStorage.setItem('profile', JSON.stringify(data));
 
             Swal.fire(

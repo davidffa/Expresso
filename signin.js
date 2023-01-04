@@ -39,8 +39,23 @@ function googleSignIn() {
 
 function signIn() {
   const email = $("#floatingEmail").val();
+  const password = $("#floatingPassword").val();
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-  localStorage.setItem("profile", JSON.stringify({ email }));
+  const user = users.find(u => u.email === email);
+
+  if (!user || user.password !== password) {
+    Swal.fire(
+      'Erro!',
+      'Utilizador ou senha inválidos!',
+      'error'
+    )
+    return;
+  }
+
+  delete user.password;
+  localStorage.setItem("profile", JSON.stringify(user));
+  window.location.href = "index.html";
 }
 
 (() => {
@@ -59,7 +74,6 @@ function signIn() {
 
       if (form.checkValidity()) {
         signIn();
-        window.location.href = "index.html";
       }
     }, false)
   })

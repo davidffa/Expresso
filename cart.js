@@ -5,6 +5,7 @@ var vm = function () {
   self.name = ko.observable();
   self.photoURL = ko.observable();
   self.email = ko.observable();
+  self.address = ko.observable();
   self.loggedIn = ko.observable(false);
 
   self.products = [
@@ -85,9 +86,10 @@ var vm = function () {
 
     const profile = JSON.parse(profileJSON);
 
-    self.name(profile.name || "João");
+    self.name(profile.name);
     self.photoURL(profile.photoURL || "./assets/unknown-user.svg");
     self.email(profile.email);
+    self.address(profile.address || "");
     self.loggedIn(true);
 
     $("#logoff").click(() => {
@@ -100,10 +102,11 @@ var vm = function () {
 }
 
 $(document).ready(() => {
-  ko.applyBindings(new vm());
-  // const isLogged = localStorage.getItem('profile');
+  const isLogged = localStorage.getItem('profile');
 
-  // if (!isLogged) {
-  //   window.location.href = "./signin.html";
-  // }
+  if (!isLogged) {
+    alert("Não tem sessão iniciada!");
+    window.location.href = "./signin.html";
+  }
+  ko.applyBindings(new vm());
 });
