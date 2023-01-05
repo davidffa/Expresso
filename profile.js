@@ -5,6 +5,7 @@ const vm = function () {
   self.email = ko.observable("john.doe@gmail.com");
   self.phone = ko.observable("");
   self.address = ko.observable("");
+  self.isGoogle = ko.observable(false);
   self.loggedIn = ko.observable(false);
 
   self.activate = () => {
@@ -18,6 +19,7 @@ const vm = function () {
     self.email(profile.email);
     self.phone(profile.phone || "");
     self.address(profile.address || "");
+    self.isGoogle(!!profile.google);
     self.loggedIn(true);
   }
 

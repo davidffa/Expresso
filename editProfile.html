@@ -94,8 +94,8 @@
         <div class="row m-2 mb-4">
           <div class="col-5">
             <label for="email">Email:</label>
-            <input id="email" type="text" class="form-control" value="joão.silva@gmail.com" required
-              data-bind="attr: { value: email }">
+            <input id="email" type="text" class="form-control" required
+              data-bind="attr: { value: email }, enable: isGoogle">
           </div>
           <div class="col-1"></div>
           <div class="col-5 form-group">
